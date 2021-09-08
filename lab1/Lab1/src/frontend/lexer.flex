@@ -53,20 +53,10 @@ import java.util.stream.*;
 	}
 	
 	private Token lookUp(String text){
-		/*Map<String, Token.Type> keywordTable = new HashMap<String, Token.Type>();
-	
-		keywordTable.put("module", MODULE);
-		keywordTable.put("false", FALSE);
-		keywordTable.put("return", RETURN);
-		keywordTable.put("while", WHILE);
-		
-		keywordTable.get(text);
-		*/
 		if(map.containsKey(text)){
 			return token(map.get(text));
 		}
 		return token(ID, text);
-		
 	}
 %}
 
@@ -77,14 +67,6 @@ Alpha = [a-zA-Z]
 
 %%
 /* put in your rules here.    */
-/*
-"module" 					{ return token(MODULE); }
-"false" 					{ return token(FALSE); }
-"return" 					{ return token(RETURN); }
-"while" 					{ return token(WHILE); }
-*/
-
-
 
 "," 						{ return token(COMMA); }
 "[" 						{ return token(LBRACKET); }
@@ -111,7 +93,7 @@ Alpha = [a-zA-Z]
 {Digit}+ 					{ return token(INT_LITERAL,  yytext()); }
 \"[^\n\"]*\"				{ return token(STRING_LITERAL, yytext()); }
 
-[ \t\n] 					{}
+{WhiteSpace} 				{}
 
 
 
